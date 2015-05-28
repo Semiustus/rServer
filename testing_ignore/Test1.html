@@ -1,0 +1,281 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+ <script type="text/javascript" src="canvasjs.min.js"></script>
+  <script type="text/javascript">
+    window.onload = function () {
+	
+	
+// Display A
+    var dpsA = []; // dataPoints
+
+    var chartA = new CanvasJS.Chart("SensorA",{
+    title :{
+    text: "Place Holder: Sensor A"
+    },
+    data: [{
+    type: "line",
+    dataPoints: dpsA
+    }]
+    });
+
+    var xValA = 0;
+    var yValA = 100;
+    var updateIntervalA = 2000;
+    var dataLengthA = 60; // number of dataPoints visible at any point
+
+    var updateChartA = function (countA) {
+    countA = countA || 1;
+    // count is number of times loop runs to generate random dataPoints.
+
+    for (var j = 0; j < countA; j++) {	
+				yValA = 20+  Math.round(5 + Math.random() *(-5-5));
+				dpsA.push({
+					x: xValA,
+					y: yValA
+				});
+				xValA++;
+			};
+			if (dpsA.length > dataLengthA)
+			{
+				dpsA.shift();				
+			}
+			
+			chartA.render();		
+
+		};
+
+		// generates first set of dataPoints
+		updateChartA(dataLengthA); 
+
+		// update chart after specified time. 
+		setInterval(function(){updateChartA()}, updateIntervalA); 
+
+// Display B
+    var dpsB = []; // dataPoints
+
+    var chartB = new CanvasJS.Chart("SensorB",{
+    title :{
+    text: "Place Holder: Sensor B"
+    },
+    data: [{
+    type: "line",
+    dataPoints: dpsB
+    }]
+    });
+
+    var xValB = 0;
+    var yValB = 100;
+    var updateIntervalB = 2000;
+    var dataLengthB = 60; // number of dataPoints visible at any point
+
+    var updateChartB = function (countB) {
+    countB = countB || 1;
+    // count is number of times loop runs to generate random dataPoints.
+
+    for (var j = 0; j < countB; j++) {	
+				yValB = 20+  Math.round(5 + Math.random() *(-5-5));
+				dpsB.push({
+					x: xValB,
+					y: yValB
+				});
+				xValB++;
+			};
+			if (dpsB.length > dataLengthB)
+			{
+				dpsB.shift();				
+			}
+			
+			chartB.render();		
+
+		};
+
+		// generates first set of dataPoints
+		updateChartB(dataLengthB); 
+
+		// update chart after specified time. 
+		setInterval(function(){updateChartB()}, updateIntervalB); 
+
+	// Display C
+	
+    
+    var dpsC = []; // dataPoints
+
+    var chartC = new CanvasJS.Chart("SensorC",{
+    title :{
+    text: "Place Holder: Sensor C"
+    },
+    data: [{
+    type: "line",
+    dataPoints: dpsC
+    }]
+    });
+
+    var xValC = 0;
+    var yValC = 100;
+    var updateIntervalC = 2000;
+    var dataLengthC = 60; // number of dataPoints visible at any point
+
+    var updateChartC = function (countC) {
+    countC = countC || 1;
+    // count is number of times loop runs to generate random dataPoints.
+
+    for (var j = 0; j < countC; j++) {	
+				yValC = 20+  Math.round(5 + Math.random() *(-5-5));
+				dpsC.push({
+					x: xValC,
+					y: yValC
+				});
+				xValC++;
+			};
+			if (dpsC.length > dataLengthC)
+			{
+				dpsC.shift();				
+			}
+			
+			chartC.render();		
+
+		};
+
+		// generates first set of dataPoints
+		updateChartC(dataLengthC); 
+
+		// update chart after specified time. 
+		setInterval(function(){updateChartC()}, updateIntervalC); 
+
+	
+	//Display D
+	
+    var dpsD = []; // dataPoints
+
+    var chartD = new CanvasJS.Chart("SensorD",{
+    title :{
+    text: "Place Holder: Sensor D"
+    },
+    data: [{
+    type: "line",
+    dataPoints: dpsD
+    }]
+    });
+
+    var xValD = 0;
+    var yValD = 100;
+    var updateIntervalD = 2000;
+    var dataLengthD = 60; // number of dataPoints visible at any point
+
+    var updateChartD = function (countD) {
+    countD = countD || 1;
+    // count is number of times loop runs to generate random dataPoints.
+
+    for (var j = 0; j < countD; j++) {	
+				yValD = 20+  Math.round(5 + Math.random() *(-5-5));
+				dpsD.push({
+					x: xValD,
+					y: yValD
+				});
+				xValD++;
+			};
+			if (dpsD.length > dataLengthD)
+			{
+				dpsD.shift();				
+			}
+			
+			chartD.render();		
+
+		};
+
+		// generates first set of dataPoints
+		updateChartD(dataLengthD); 
+
+		// update chart after specified time. 
+		setInterval(function(){updateChartD()}, updateIntervalD); 
+
+	}
+  </script>
+  
+<style>
+  html, body {
+  padding: 0px;
+  margin: 0px;
+  font-family: "Arial","Helvetica",sans-serif;
+  }
+  #loading_state {
+  position: absolute;
+  top: 45%;
+  left: 0px;
+  width: 100%;
+  font-size: 20px;
+  text-align: center;
+  }
+  #open_call_state {
+  display: none;
+  }
+  #local_video {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 160px;
+  height: 120px;
+  background: #333333;
+  }
+  #remote_video {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 480px;
+  height: 420px;
+  background: #999999;
+  overflow: hidden;
+  }
+  #SensorA {
+  position: absolute;
+  top: 50px;
+  right: 25px;
+  height: 300px;
+  width: 400px;
+  background: #222222;
+  overflow: hidden;
+  }
+  #SensorB {
+  position: absolute;
+  top: 400px;
+  right: 25px;
+  height: 300px;
+  width: 400px;
+  background: #222222;
+  overflow: hidden;
+  }
+  #SensorC {
+  position: absolute;
+  top: 50px;
+  right: 475px;
+  height: 300px;
+  width: 400px;
+  background: #222222;
+  overflow: hidden; 
+  }
+  #SensorD {
+  position: absolute;
+  top: 400px;
+  right: 475px;
+  height: 300px;
+  width: 400px;
+  background: #222222;
+  overflow: hidden;
+  }
+
+</style>
+</head>
+<body >
+    <div id="SensorA">
+    </div>
+    <div id="SensorB">
+    </div>
+    <div id="SensorC">
+    </div>
+    <div id="SensorD">
+    </div>
+
+ 
+</body>
+</html>
