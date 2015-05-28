@@ -69,7 +69,7 @@ var http_server = http.createServer(function(request, response) {
 
       }
       else if (matches = request.url.indexOf('.js') != -1) {
-          fs.readFile(__dirname + '/assets/serialport/dataProcessingBundle.js', function (error, data) {
+          fs.readFile(__dirname + '/assets/dataProcessingBundle.js', function (error, data) {
               if (error) {
                   console.log(error);
               }
