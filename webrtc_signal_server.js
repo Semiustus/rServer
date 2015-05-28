@@ -55,8 +55,21 @@ var http_server = http.createServer(function(request, response) {
   }
   else {
    
-      if (matches= request.url.indexOf('.js') != -1) {
+      if (matches= request.url.indexOf('.min.js') != -1) {
           fs.readFile(__dirname + '/assets/canvasjs.min.js', function (error, data) {
+              if (error) {
+                  console.log(error);
+              }
+              else {
+                  response.writeHead(200, { 'Content-Type': 'text/javascript' });
+                  response.write(data);
+                  response.end(data);
+              }
+          });
+
+      }
+      else if (matches = request.url.indexOf('.js') != -1) {
+          fs.readFile(__dirname + '/assets/serialport/dataProcessingBundle.js', function (error, data) {
               if (error) {
                   console.log(error);
               }
