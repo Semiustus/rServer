@@ -6,7 +6,7 @@ window.onload = function () {
     var Data_B = "";
     var Data_C = "";
     var Data_D = "";
-    var socket = io.connect();
+    //var socket = io.connect();
 
     var titleA = "";
     var xA = "";
@@ -29,13 +29,13 @@ window.onload = function () {
     var dataD;
 
   
-    socket.on('Sensors', function (data) {
-        Data_A = data.Data_A;
-        Data_B = data.Data_B;
-        Data_C = data.Data_C;
-        Data_D = data.Data_D;
+    //socket.on('Sensors', function (data) {
+    //    Data_A = data.Data_A;
+    //    Data_B = data.Data_B;
+    //    Data_C = data.Data_C;
+    //    Data_D = data.Data_D;
 
-    });
+    //});
 
     //
     //

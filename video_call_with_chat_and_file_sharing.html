@@ -2,7 +2,7 @@
 <html>
 <head>
 
-  <script type="text/javascript" src="../assets/socket.io.js"></script>
+  <!--//<script type="text/javascript" src="../assets/socket.io.js"></script>-->
   <script type="text/javascript" src="../assets/canvasjs.min.js"></script>
   <script type="text/javascript" src="../assets/dataProcessing.js"></script>
   
@@ -104,7 +104,7 @@ function start() {
   console.log("setting up connection to signaling server");
   //signaling_server = new WebSocket("ws://10.85.33.37:1234");
   //signaling_server = new WebSocket("ws://192.168.11.16:1234"); //Current Router IP
-  signaling_server = new WebSocket("ws://192.168.0.5:1234");
+  signaling_server = new WebSocket("ws://192.168.43.140:1234");
 
   if (document.location.hash === "" || document.location.hash === undefined) { // you are the Caller
     console.log("you are the Caller");

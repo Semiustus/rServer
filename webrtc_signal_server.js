@@ -37,7 +37,7 @@ var webrtc_clients = [];
 var webrtc_discussions = {};
 
 //
-var io = require('socket.io').listen(http);
+//var io = require('socket.io').listen(http);
 var serialport = require("serialport");
 var SerialPort = serialport.SerialPort;
 
@@ -164,16 +164,16 @@ serialPortD.on("open", function () {
 
 //Stream Serial Data
 
-io.on('connection', function(socket){
-    socket.on('Sensors',function( ){
-        io.emit('Sensors', {
-            Data_A: Data_A,
-            Data_B: Data_B,
-            Data_C: Data_C,
-            Data_D: Data_D,
-        });
-    });
-})
+//io.on('connection', function(socket){
+//    socket.on('Sensors',function( ){
+//        io.emit('Sensors', {
+//            Data_A: Data_A,
+//            Data_B: Data_B,
+//            Data_C: Data_C,
+//            Data_D: Data_D,
+//        });
+//    });
+//})
 
 
 
