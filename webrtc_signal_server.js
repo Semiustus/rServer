@@ -36,6 +36,144 @@ var port = 1234;
 var webrtc_clients = [];
 var webrtc_discussions = {};
 
+//
+var io = require('socket.io').listen(http);
+var serialport = require("serialport");
+var SerialPort = serialport.SerialPort;
+
+
+//Port A Setup
+var portNameA = "ttyUSB0" // Change
+var Data_A = "";
+var titleA = "";
+var xA = "";
+var yA = "";
+var dataA;
+var serialPortA = new SerialPort(portNameA, {
+    baudrate: 115200,
+    // For Arduino serial communication, May need larger buffer size
+    dataBits: 8,
+    buffersize: 1000,
+    parity: 'none',
+    stopBits: 1,
+    flowControl: false
+});
+
+//Port B Setup
+var portNameB = "ttyUSB1" // Change
+var Data_B = "";
+var titleB = "";
+var xB = "";
+var yB = "";
+var dataB;
+
+var serialPortB = new SerialPort(portNameB, {
+    baudrate: 115200,
+    // For Arduino serial communication, May need larger buffer size
+    dataBits: 8,
+    buffersize: 1000,
+    parity: 'none',
+    stopBits: 1,
+    flowControl: false
+});
+
+//Port C Setup
+var portNameC = "ttyUSB2" // Change
+var Data_C = "";
+var titleC = "";
+var xC = "";
+var yC = "";
+var dataC;
+
+var serialPortC = new SerialPort(portNameC, {
+    baudrate: 115200,
+    // For Arduino serial communication, May need larger buffer size
+    dataBits: 8,
+    buffersize: 1000,
+    parity: 'none',
+    stopBits: 1,
+    flowControl: false
+});
+
+//Port D Setup
+var portNameD = "ttyUSB3" // Change
+var Data_D = "";
+var titleD = "";
+var xD = "";
+var yD = "";
+var dataD;
+
+var serialPortD = new SerialPort(portNameD, {
+    baudrate: 115200,
+    // For Arduino serial communication, May need larger buffer size
+    dataBits: 8,
+    buffersize: 1000,
+    parity: 'none',
+    stopBits: 1,
+    flowControl: false
+});
+
+
+
+serialPortA.on("open", function () {
+    //console.log('open');
+
+    serialPortA.on('data', function (data) {
+        // console.log('data received: ' + data);
+        Data_A = data;
+        //console.log('checking variable: ' + receivedData_A);
+    });
+});
+
+
+
+serialPortB.on("open", function () {
+    //console.log('open');
+
+    serialPortB.on('data', function (data) {
+        // console.log('data received: ' + data);
+        Data_B = data;
+        //console.log('checking variable: ' + receivedData_A);
+    });
+});
+
+
+
+serialPortC.on("open", function () {
+    //console.log('open');
+
+    serialPortC.on('data', function (data) {
+        // console.log('data received: ' + data);
+        Data_C = data;
+        //console.log('checking variable: ' + receivedData_A);
+    });
+});
+
+
+
+serialPortD.on("open", function () {
+    //console.log('open');
+
+    serialPortD.on('data', function (data) {
+        // console.log('data received: ' + data);
+        Data_D = data;
+        //console.log('checking variable: ' + receivedData_A);
+    });
+});
+
+
+//Stream Serial Data
+
+io.on('connection', function(socket){
+    socket.on('Sensors',function( ){
+        io.emit('Sensors', {
+            Data_A: Data_A,
+            Data_B: Data_B,
+            Data_C: Data_C,
+            Data_D: Data_D,
+        });
+    });
+})
 
 
 
@@ -68,8 +206,21 @@ var http_server = http.createServer(function(request, response) {
           });
 
       }
+      else if (matches = request.url.indexOf('.io.js') != -1) {
+          fs.readFile(__dirname + '/assets/dataProcessing.js', function (error, data) {
+              if (error) {
+                  console.log(error);
+              }
+              else {
+                  response.writeHead(200, { 'Content-Type': 'text/javascript' });
+                  response.write(data);
+                  response.end(data);
+              }
+          });
+
+      }
       else if (matches = request.url.indexOf('.js') != -1) {
-          fs.readFile(__dirname + '/assets/dataProcessingBundle.js', function (error, data) {
+          fs.readFile(__dirname + '/assets/dataProcessing.js', function (error, data) {
               if (error) {
                   console.log(error);
               }

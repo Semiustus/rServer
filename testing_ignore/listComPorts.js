@@ -1,4 +1,4 @@
-// JavaScript source code
+    // JavaScript source code
 var serialport = require("serialport");
 var SerialPort = serialport.SerialPort;
 

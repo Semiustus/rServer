@@ -2,9 +2,9 @@
 <html>
 <head>
 
-
+  <script type="text/javascript" src="../assets/socket.io.js"></script>
   <script type="text/javascript" src="../assets/canvasjs.min.js"></script>
-  <script type="text/javascript" src="../assets/dataProcessingBundle.js"></script>
+  <script type="text/javascript" src="../assets/dataProcessing.js"></script>
   
 
 
@@ -102,8 +102,9 @@ function start() {
 
   // setup generic connection to the signaling server using the WebSocket API
   console.log("setting up connection to signaling server");
-  //signaling_server = new WebSocket("ws://10.85.37.44:1234");
-  signaling_server = new WebSocket("ws://localhost:1234");
+  //signaling_server = new WebSocket("ws://10.85.33.37:1234");
+  //signaling_server = new WebSocket("ws://192.168.11.16:1234"); //Current Router IP
+  signaling_server = new WebSocket("ws://192.168.0.5:1234");
 
   if (document.location.hash === "" || document.location.hash === undefined) { // you are the Caller
     console.log("you are the Caller");
@@ -131,7 +132,7 @@ function start() {
 
     document.title = "You are the Caller";
     console.log("updating UI to loading_state");
-    document.getElementById("loading_state").innerHTML = "Ready for a call...ask your friend to visit:<br/><br/>"+document.location;
+    document.getElementById("loading_state").innerHTML = "Ready for a call...waiting for login:<br/><br/>"+document.location;
 
   } else { // you have a hash fragment so you must be the Callee 
     console.log("you are the Callee");
@@ -271,7 +272,7 @@ function setup_video() {
   get_user_media(
     { 
       "audio": true, // request access to local microphone
-      "video": true  // request access to local camera
+      "video": true, width: { exact: 640 }, height: { exact: 480 }   // request access to local camera
     }, 
     function (local_stream) { // success callback
       // display preview from the local camera & microphone using local <video> MediaElement

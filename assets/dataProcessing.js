@@ -1,121 +1,46 @@
 window.onload = function () {
 
-    var serialport = require("serialport");
-    var SerialPort = serialport.SerialPort;
-
-    //Port A Collect Data
-    var portNameA = "ttyUSB0" // Change
+    
+    //Client side Setuo
     var Data_A = "";
+    var Data_B = "";
+    var Data_C = "";
+    var Data_D = "";
+    var socket = io.connect();
+
     var titleA = "";
     var xA = "";
     var yA = "";
     var dataA;
-    var serialPortA = new SerialPort(portNameA, {
-        baudrate: 115200,
-        // For Arduino serial communication, May need larger buffer size
-        dataBits: 8,
-        buffersize: 1000,
-        parity: 'none',
-        stopBits: 1,
-        flowControl: false
-    });
 
-    serialPortA.on("open", function () {
-        //console.log('open');
-
-        serialPortA.on('data', function (data) {
-            // console.log('data received: ' + data);
-            Data_A = data;
-            //console.log('checking variable: ' + receivedData_A);
-        });
-    });
-
-
-    //Port B Collect Data
-    var portNameB = "ttyUSB1" // Change
-    var Data_B = "";
     var titleB = "";
     var xB = "";
     var yB = "";
     var dataB;
 
-    var serialPortB = new SerialPort(portNameB, {
-        baudrate: 115200,
-        // For Arduino serial communication, May need larger buffer size
-        dataBits: 8,
-        buffersize: 1000,
-        parity: 'none',
-        stopBits: 1,
-        flowControl: false
-    });
-
-    serialPortB.on("open", function () {
-        //console.log('open');
-
-        serialPortB.on('data', function (data) {
-            // console.log('data received: ' + data);
-            Data_B = data;
-            //console.log('checking variable: ' + receivedData_A);
-        });
-    });
-
-    //Port C Collect Data
-    var portNameC = "ttyUSB2" // Change
-    var Data_C = "";
     var titleC = "";
     var xC = "";
     var yC = "";
     var dataC;
 
-    var serialPortC = new SerialPort(portNameC, {
-        baudrate: 115200,
-        // For Arduino serial communication, May need larger buffer size
-        dataBits: 8,
-        buffersize: 1000,
-        parity: 'none',
-        stopBits: 1,
-        flowControl: false
-    });
-
-    serialPortC.on("open", function () {
-        //console.log('open');
-
-        serialPortC.on('data', function (data) {
-            // console.log('data received: ' + data);
-            Data_C = data;
-            //console.log('checking variable: ' + receivedData_A);
-        });
-    });
-
-    //Port D Collect Data
-    var portNameD = "ttyUSB3" // Change
-    var Data_D = "";
     var titleD = "";
     var xD = "";
     var yD = "";
     var dataD;
 
-    var serialPortD = new SerialPort(portNameD, {
-        baudrate: 115200,
-        // For Arduino serial communication, May need larger buffer size
-        dataBits: 8,
-        buffersize: 1000,
-        parity: 'none',
-        stopBits: 1,
-        flowControl: false
+  
+    socket.on('Sensors', function (data) {
+        Data_A = data.Data_A;
+        Data_B = data.Data_B;
+        Data_C = data.Data_C;
+        Data_D = data.Data_D;
+
     });
 
-    serialPortD.on("open", function () {
-        //console.log('open');
-
-        serialPortD.on('data', function (data) {
-            // console.log('data received: ' + data);
-            Data_D = data;
-            //console.log('checking variable: ' + receivedData_A);
-        });
-    });
-
-        
+    //
+    //
+      
+    // Canvas Script (Keep Client side)
     // Port A Formating 
     if ((Data_A.slice(0, 2) == "000") && (Data_A.length>15)) {
         if (Data_A.slice(3, 7) == "375DA") {
